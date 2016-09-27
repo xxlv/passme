@@ -11,7 +11,8 @@ class Weibo(Adapter):
 
 
     def check(self,user,passwd):
-        self.logger.info("Check pass for weibo "+self.auth_url )
+        
+        self.logger.info("Check pass for  "+self.auth_url )
         checked_status=[0,'success']
         self.estimate(checked_status)
         return checked_status

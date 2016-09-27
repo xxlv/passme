@@ -18,19 +18,30 @@ class Adapter():
 
     def estimate(self,checked_status):
         if checked_status[0]==0:
-            self.logger.info(checked_status[1])
+            self.logger.warn(checked_status[1])
         if checked_status[0]==-1:
             self.logger.error(checked_status[1])
 
-    def postWithFormData(self,post):
-        return requests.post(self.auth_url,data=post)
+    def post(self,post,url=False,headers={}):
+        if (url==False):
+            url=self.auth_url
+
+        sess=requests.Session()
+        return sess.post(url,data=post,headers=headers)
+
+    def get(self,url=False,headers={}):
+        if (url==False):
+            url=self.auth_url
+        sess=requests.Session()
+        return sess.get(url,headers=headers)
 
 
     def _init_logger(self):
 
-        logging.basicConfig(level=logging.INFO)
         logger = logging.getLogger("passme")
-        logger.setLevel(logging.DEBUG)
+        logging.basicConfig(level=logging.WARNING)
+        logger.setLevel(logging.WARN)
+
         # # create console handler and set level to debug
         # ch = logging.StreamHandler()
         # ch.setLevel(logging.DEBUG)

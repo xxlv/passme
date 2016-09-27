@@ -9,8 +9,9 @@ from os.path import isfile,join
 
 # adapter list
 sys.path.append('./adapters')
-from  weibo import *
+from weibo import *
 from qyqq import *
+from github import  *
 
 class PassMe:
 
@@ -44,10 +45,11 @@ class PassMe:
         self.adapters=[]
         # self.adapters=[["weibo",Weibo()]]
         self.adapters.append(['qyqq',Qyqq()])
+        self.adapters.append(['github',Github()])
 
 
 if __name__=='__main__':
 
-    passme=PassMe("user",'passwd')
+    passme=PassMe("USER",'PASS')
     passme.checkAll()
     # passme.check("weibo")

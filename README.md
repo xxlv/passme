@@ -4,6 +4,6 @@
 
 # Support adapters
 
+- github [github](https://github.com)
 - [TODO] weibo  [新浪微博](http://weibo.com/)
 - [TODO] qyqq   [企业qq邮箱](https://exmail.qq.com)
-- [TODO] github [github](https://github.com)
