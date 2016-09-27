@@ -9,12 +9,14 @@ from os import listdir
 from os.path import isfile,join
 
 
+import coloredlogs
 # adapter list
 sys.path.append('./adapters')
 
 from weibo import Weibo
 from qyqq import Qyqq
 from github import Github
+
 
 
 class PassMe:
@@ -54,6 +56,8 @@ class PassMe:
 
 
 if __name__=='__main__':
+
+    coloredlogs.install()
 
     parser = argparse.ArgumentParser(description='Passme! check your password')
     parser.add_argument('-u', action="store", help="user identity")
