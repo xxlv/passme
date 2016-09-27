@@ -5,7 +5,7 @@ from adapter import Adapter
 import time
 
 class Qyqq(Adapter):
-
+    
     def __init__(self):
         super(Qyqq,self).__init__()
         self.auth_url='https://exmail.qq.com/cgi-bin/login'
