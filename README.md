@@ -5,10 +5,8 @@
 
 # How to use it ?
 
-**Just type it >>>**
-
 ```  python
-    python passme.py -u YOUR_USERNAME -p YOUR_PASSWD
+    python3 passme.py -u YOUR_USERNAME -p YOUR_PASSWD
 ```
 
 # Support Adapters
