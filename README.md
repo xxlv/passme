@@ -3,6 +3,14 @@
 这是一个简单的密码检查工具。通过检查你的密码是否在多个应用下重复使用来返回一个评估。
 
 
+# How to use it ?
+
+**Just type it >>>**
+
+```  python
+    python passme.py -u YOUR_USERNAME -p YOUR_PASSWD
+```
+
 # Support Adapters
 
 #### Active
