@@ -3,15 +3,19 @@
 import sys
 import imp
 import os
+import argparse
+
 from os import listdir
 from os.path import isfile,join
 
 
 # adapter list
 sys.path.append('./adapters')
-from weibo import *
-from qyqq import *
-from github import  *
+
+from weibo import Weibo
+from qyqq import Qyqq
+from github import Github
+
 
 class PassMe:
 
@@ -48,8 +52,22 @@ class PassMe:
         self.adapters.append(['github',Github()])
 
 
+
 if __name__=='__main__':
 
-    passme=PassMe("USER",'PASS')
-    passme.checkAll()
-    # passme.check("weibo")
+    parser = argparse.ArgumentParser(description='Passme! check your password')
+    parser.add_argument('-u', action="store", help="user identity")
+    parser.add_argument('-p', action="store", help="user password")
+    parser.add_argument('-a', action="store", help="adapter specify")
+    parser.add_argument('--version', action='version', version='%(prog)s 1.0')
+
+    results = parser.parse_args()
+    user=results.u
+    passwd=results.p
+
+    passme=PassMe(user,passwd)
+
+    if(results.a!=None):
+        passme.check(results.a)
+    else:
+        passme.checkAll()

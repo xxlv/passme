@@ -5,7 +5,7 @@ from adapter import Adapter
 import time
 
 class Qyqq(Adapter):
-    
+
     def __init__(self):
         super(Qyqq,self).__init__()
         self.auth_url='https://exmail.qq.com/cgi-bin/login'
@@ -23,7 +23,7 @@ class Qyqq(Adapter):
         p=''
         # TODO what is this ?
         ts='1474949642'
-        inputuin='lvxx@dxy.cn'
+        inputuin='xxxx'
 
         # params
         post={}
@@ -63,7 +63,7 @@ class Qyqq(Adapter):
         # use cookie access this url
         # check status
 
-        checked_status=[0,'']
+        checked_status=[-1,'not found ']
         self.estimate(checked_status)
 
         return checked_status
