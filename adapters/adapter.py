@@ -40,7 +40,9 @@ class Adapter():
     def _init_logger(self):
 
         coloredlogs.install()
-        logging.basicConfig(level=logging.INFO)
+        logging.getLogger("requests").setLevel(logging.WARNING)
+
+        # logging.basicConfig(level=logging.INFO,format='%(asctime)s %(name)s[%(process)d] %(levelname)s %(message)s')
         logger = logging.getLogger('passme')
         logger.setLevel(logging.INFO)
         self.logger=logger

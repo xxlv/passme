@@ -56,9 +56,7 @@ class PassMe:
 
 
 if __name__=='__main__':
-
-    coloredlogs.install()
-
+    
     parser = argparse.ArgumentParser(description='Passme! check your password')
     parser.add_argument('-u', action="store", help="user identity")
     parser.add_argument('-p', action="store", help="user password")
