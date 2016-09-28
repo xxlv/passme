@@ -13,8 +13,9 @@
 
 #### Alive
 
-- github  [github](https://github.com)
-- Redmine [redmine](http://www.redmine.org/)
+- github  [github](https://github.com) 不解释
+- Redmine [redmine](http://www.redmine.org/)  一个开源的项目管理工具
+
 
 
 

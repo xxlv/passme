@@ -15,6 +15,7 @@ class Adapter():
     def check(self,user,passwd):
         checked_status=[0,'nothing happend']
         self.estimate(checked_status)
+        self.logger.debug('checking user %s  password is %s ' % (user,passwd))
         return checked_status
 
     def estimate(self,checked_status):
@@ -28,11 +29,15 @@ class Adapter():
             url=self.auth_url
 
         sess=requests.Session()
+
+        self.logger.debug('prepare request(post) url %s' % url)
         return sess.post(url,data=post,headers=headers)
 
     def get(self,url=False,headers={}):
         if (url==False):
             url=self.auth_url
+
+        self.logger.debug('prepare get url %s' % url)
         sess=requests.Session()
         return sess.get(url,headers=headers)
 
@@ -44,5 +49,5 @@ class Adapter():
 
         # logging.basicConfig(level=logging.INFO,format='%(asctime)s %(name)s[%(process)d] %(levelname)s %(message)s')
         logger = logging.getLogger('passme')
-        logger.setLevel(logging.INFO)
+        logger.setLevel(logging.DEBUG)
         self.logger=logger
