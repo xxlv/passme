@@ -2,44 +2,55 @@
 from adapter import Adapter
 import re
 
-class Github(Adapter):
+"""
+    Redmine adapter for passme
+    You should set auth_url first
+"""
+
+class Redmine(Adapter):
 
     def __init__(self):
-        super(Github,self).__init__()
-        self.auth_url='https://github.com/session'
-
-
+        super(Redmine,self).__init__()
+        # TODO set auth url
+        self.auth_url=None
 
     def check(self,user,passwd):
+
+        if self.auth_url is None:
+            self.logger.error("Skip Redmine , please set auth_url first! ")
+            return
 
         self.logger.info("Check pass for  "+self.auth_url)
 
         # params
         post={}
-        post["commit"]="Sign in"
         post["utf8"]='✓'
-        post["login"]=user
+        post["username"]=user
         post["password"]=passwd
+        post["autologin"]=1
 
         sess=self.initSession()
         cookie=sess.get('cookie','')
         post["authenticity_token"]=sess.get('authenticity_token','')
 
         r=self.post(post,headers={"cookie":cookie})
-        headers=r.headers
-        if(headers.get('X-GitHub-User','')!=''):
-            checked_status=[0,'Found github user ('+user+') using this pwd']
+        t=r.text
+
+        partten=re.compile(r'/my/page')
+        matches=partten.search(t)
+
+        if(matches is not None):
+            checked_status=[0,'Found redmine user ('+user+') using this password']
         else:
-            checked_status=[-1,'github not found user use this pwd']
+            checked_status=[-1,'redmine not found user use this pwd']
 
         self.estimate(checked_status)
-
         return checked_status
 
 
     def initSession(self):
 
-        url='https://github.com/login'
+        url=self.auth_url
         r=self.get(url)
 
         cookies=r.cookies

@@ -16,7 +16,7 @@ sys.path.append('./adapters')
 from weibo import Weibo
 from qyqq import Qyqq
 from github import Github
-
+from redmine import Redmine
 
 
 class PassMe:
@@ -49,9 +49,9 @@ class PassMe:
     def _init_adapters(self):
         # TODO dynamicy
         self.adapters=[]
-        # self.adapters=[["weibo",Weibo()]]
         self.adapters.append(['qyqq',Qyqq()])
         self.adapters.append(['github',Github()])
+        self.adapters.append(['redmine',Redmine()])
 
 
 

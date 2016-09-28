@@ -2,6 +2,7 @@
 
 import logging
 import requests
+import coloredlogs
 
 
 
@@ -38,8 +39,8 @@ class Adapter():
 
     def _init_logger(self):
 
-        logger = logging.getLogger("passme")
+        coloredlogs.install()
         logging.basicConfig(level=logging.INFO)
+        logger = logging.getLogger('passme')
         logger.setLevel(logging.INFO)
-
         self.logger=logger
