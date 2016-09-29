@@ -8,6 +8,7 @@ class Weibo(Adapter):
     def __init__(self):
         super(Weibo,self).__init__()
         self.auth_url='weibo.url'
+        self.name='Weibo'
 
 
     def check(self,user,passwd):

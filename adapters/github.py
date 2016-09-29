@@ -6,7 +6,7 @@ class Github(Adapter):
 
     def __init__(self):
         super(Github,self).__init__()
-        self.name='github'
+        self.name='Github'
         self.auth_url='https://github.com/session'
 
 
@@ -28,6 +28,7 @@ class Github(Adapter):
 
         r=self.post(post,headers={"cookie":cookie})
         headers=r.headers
+            
         if(headers.get('X-GitHub-User','')!=''):
             checked_status=[0,'Found github user ('+user+') using this pwd']
             self.found(user,passwd)

@@ -12,7 +12,7 @@ class Redmine(Adapter):
     def __init__(self):
         super(Redmine,self).__init__()
         # TODO set auth url
-        self.name='redmine'
+        self.name='Redmine'
         self.auth_url=None
 
     def check(self,user,passwd):
@@ -39,7 +39,7 @@ class Redmine(Adapter):
         partten=re.compile(r'/my/page')
         matches=partten.search(t)
 
-        if(matches is not None):            
+        if(matches is not None):
             checked_status=[0,'Found redmine user ('+user+') using this password']
         else:
             checked_status=[-1,'redmine not found user use this pwd']

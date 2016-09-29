@@ -6,16 +6,17 @@ class Gitlab(Adapter):
 
     def __init__(self):
         super(Gitlab,self).__init__()
+        self.name='Gitlab'
         self.auth_url=None
-        self.name='gitlab'
+
 
 
     def check(self,user,passwd):
 
-
-        self.logger.info("Check password for  "+self.auth_url)
         if self.auth_url is None:
             return self.skip()
+
+        self.logger.info("Check password for  "+self.auth_url)
 
         # params
         post={}

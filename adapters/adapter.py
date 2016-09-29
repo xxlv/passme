@@ -11,6 +11,7 @@ class Adapter():
     def __init__(self):
         self.auth_url=''
         self._init_logger()
+        self.name='Adapter'
 
     def check(self,user,passwd):
         checked_status=[0,'nothing happend']
@@ -29,21 +30,27 @@ class Adapter():
         self.logger.warn("Skip "+self.name)
         return
 
+    def skilAll(self):
+        self.logger.warn("Skip All")
+        return
+
+
 
     def found(self,user='',passwd=''):
 
         # TODO  FOUND USER USE THIS PASSWORD
-        self.logger.error(self.name +" FOUND user "+ user +" use this password ("+passwd+")")
+        self.logger.error(self.name +" FOUND user "+ str(user) +" use this password")
         return
 
 
     def not_found(self,user='',passwd=''):
         # TODO NOT FOUND USER USE THIS PASSWORD
-        self.logger.info(self.name +" NOT FOUND user "+user +" use this password ("+passwd+")")
+        self.logger.info(self.name +" NOT FOUND user "+str(user) +" use this password")
         return
 
 
     def post(self,post,url=False,headers={}):
+
         if (url==False):
             url=self.auth_url
 

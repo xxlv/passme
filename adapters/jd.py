@@ -50,6 +50,7 @@ class Jd(Adapter):
 
         logined=False
 
+
         if(logined):
             self.found(user,passwd)
             checked_status=[0,'Found '+self.name+' user ('+user+') using this pwd']

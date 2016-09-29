@@ -1,24 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import imp
 import os
 import argparse
 
+import importlib
 from os import listdir
-from os.path import isfile,join
+from os.path import isfile
 
-
-import coloredlogs
 # adapter list
 sys.path.append('./adapters')
-
-from weibo import Weibo
-from qyqq import Qyqq
-from github import Github
-from redmine import Redmine
-from jd import Jd
-from gitlab import Gitlab
+from adapters import *
 
 
 class PassMe:
@@ -29,35 +21,49 @@ class PassMe:
         self.adapter_path='./adapters'
         self._init_adapters()
 
+
     def check(self,adapter_name):
         for adapter in self.adapters:
-            if adapter[0]==adapter_name:
-                adapter=adapter[1]
-                adapter.check(self.user,self.passwd)
+            if adapter.upper()==adapter_name.upper():
+                adapter=self._class_for_name('adapters',adapter)
+                if adapter is not None:
+                    adapter=adapter()
+                    adapter.check(self.user,self.passwd)
+
 
     def checkAll(self):
         result =list()
         for adapter in self.adapters:
-            adapter=adapter[1]
-            checked_status=adapter.check(self.user,self.passwd)
-            result.append(checked_status)
+            adapter=self._class_for_name('adapters',adapter)
+            if adapter is not None:
+                adapter=adapter()
+                checked_status=adapter.check(self.user,self.passwd)
+                result.append(checked_status)
+
         return result
+
 
     def listAllAdapters(self):
         for adapter in self.adapters:
-            print(adapter[0]+"\n")
+            print(adapter+"\n")
 
 
     def _init_adapters(self):
-
         self.adapters=[]
-        self.adapters.append(['qyqq',Qyqq()])
-        self.adapters.append(['github',Github()])
-        self.adapters.append(['gitlab',Gitlab()])
-        self.adapters.append(['redmine',Redmine()])
-        self.adapters.append(['jd',Jd()])
 
+        files=listdir(self.adapter_path)
 
+        for f in files:
+            f=os.path.splitext(f)
+            adaper_name=f[0].capitalize()
+            if(adaper_name[0]!='_' and adaper_name!='Adapter'):
+                self.adapters.append(adaper_name)
+
+    def _class_for_name(self,module_name,class_name):
+
+        m=importlib.import_module(module_name)
+        c=getattr(m,class_name)
+        return c
 
 if __name__=='__main__':
 
@@ -68,9 +74,9 @@ if __name__=='__main__':
     parser.add_argument('--version', action='version', version='%(prog)s 1.0')
 
     results = parser.parse_args()
+
     user=results.u
     passwd=results.p
-
     passme=PassMe(user,passwd)
 
     if(results.a!=None):
