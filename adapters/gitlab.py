@@ -14,7 +14,7 @@ class Gitlab(Adapter):
     def check(self,user,passwd):
 
         if self.auth_url is None:
-            return self.skip()
+            return self.skip('Please set auth url first')
 
         self.logger.info("Check password for  "+self.auth_url)
 

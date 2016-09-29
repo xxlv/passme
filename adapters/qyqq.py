@@ -13,7 +13,7 @@ class Qyqq(Adapter):
 
 
     def check(self,user,passwd):
-        return self.skip()
+        return self.skip("Not finish yet")
         self.logger.info("Check password for  "+self.auth_url)
 
         starttime=int(1000*time.time())

@@ -26,8 +26,13 @@ class Adapter():
             pass
 
 
-    def skip(self,reason=[]):
-        self.logger.warn("Skip "+self.name)
+    def skip(self,reason=''):
+
+        skip="Skip "+self.name
+        if reason is not '':
+            skip+=" Reason: "+ reason
+            
+        self.logger.warn(skip)
         return
 
     def skilAll(self):

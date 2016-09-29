@@ -7,11 +7,14 @@ class Weibo(Adapter):
 
     def __init__(self):
         super(Weibo,self).__init__()
-        self.auth_url='weibo.url'
+        self.auth_url=None
         self.name='Weibo'
 
 
     def check(self,user,passwd):
+        if self.auth_url is None:
+            return self.skip()
+
 
         self.logger.info("Check password for  "+self.auth_url )
         checked_status=[0,'success']
