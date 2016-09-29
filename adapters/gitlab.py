@@ -2,49 +2,48 @@
 from adapter import Adapter
 import re
 
-"""
-    Redmine adapter for passme
-    You should set auth_url first
-"""
-
-class Redmine(Adapter):
+class Gitlab(Adapter):
 
     def __init__(self):
-        super(Redmine,self).__init__()
-        # TODO set auth url
-        self.name='redmine'
+        super(Gitlab,self).__init__()
         self.auth_url=None
+        self.name='gitlab'
+
 
     def check(self,user,passwd):
 
-        if self.auth_url is None:
-            return self.skip()
 
         self.logger.info("Check password for  "+self.auth_url)
+        if self.auth_url is None:
+            return self.skip()
 
         # params
         post={}
         post["utf8"]='✓'
-        post["username"]=user
-        post["password"]=passwd
-        post["autologin"]=1
+        post["user[login]"]=user
+        post["user[password]"]=passwd
+        post["user[remember_me]"]=0
 
         sess=self.initSession()
         cookie=sess.get('cookie','')
         post["authenticity_token"]=sess.get('authenticity_token','')
 
         r=self.post(post,headers={"cookie":cookie})
-        t=r.text
 
-        partten=re.compile(r'/my/page')
-        matches=partten.search(t)
+        partten=re.compile(r'class="sign-out-link"')
+        matches=partten.search(r.text)
 
-        if(matches is not None):            
-            checked_status=[0,'Found redmine user ('+user+') using this password']
+        if(matches):
+            self.found(user,passwd)
+            checked_status=[0,'Found gitlab user ('+user+') using this pwd']
+
         else:
-            checked_status=[-1,'redmine not found user use this pwd']
+            self.not_found(user,passwd)
+            checked_status=[-1,'Not found gitlab user ('+user+') using this pwd']
+
 
         self.estimate(checked_status)
+
         return checked_status
 
 
@@ -55,13 +54,15 @@ class Redmine(Adapter):
 
         cookies=r.cookies
         t=r.text
-        pattern=re.compile(r'name="authenticity_token"\stype="hidden"\svalue="(.*?)"')
+        pattern=re.compile(r'type="hidden"\sname="authenticity_token"\svalue="(.*?)"')
         match=pattern.search(t)
 
         if match is not None:
             authenticity_token=match.group(1)
         else:
             authenticity_token=''
+
+
         cookies="; ".join([str(x)+"="+str(y) for x,y in cookies.items()])
 
         return {"authenticity_token":authenticity_token,"cookie":cookies}

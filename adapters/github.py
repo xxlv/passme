@@ -6,6 +6,7 @@ class Github(Adapter):
 
     def __init__(self):
         super(Github,self).__init__()
+        self.name='github'
         self.auth_url='https://github.com/session'
 
 
@@ -29,11 +30,11 @@ class Github(Adapter):
         headers=r.headers
         if(headers.get('X-GitHub-User','')!=''):
             checked_status=[0,'Found github user ('+user+') using this pwd']
-            self.found()
+            self.found(user,passwd)
         else:
             checked_status=[-1,'github not found user use this pwd']
-            self.not_found()
-            
+            self.not_found(user,passwd)
+
 
         self.estimate(checked_status)
 

@@ -18,6 +18,7 @@ from qyqq import Qyqq
 from github import Github
 from redmine import Redmine
 from jd import Jd
+from gitlab import Gitlab
 
 
 class PassMe:
@@ -48,10 +49,11 @@ class PassMe:
 
 
     def _init_adapters(self):
-        # TODO 
+
         self.adapters=[]
         self.adapters.append(['qyqq',Qyqq()])
         self.adapters.append(['github',Github()])
+        self.adapters.append(['gitlab',Gitlab()])
         self.adapters.append(['redmine',Redmine()])
         self.adapters.append(['jd',Jd()])
 

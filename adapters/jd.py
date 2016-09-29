@@ -8,7 +8,7 @@ class Jd(Adapter):
 
     def __init__(self):
         super(Jd,self).__init__()
-        self.name='JD'
+        self.name='Jd'
         self.auth_url='https://passport.jd.com/uc/loginService'
 
     def check(self,user,passwd):
@@ -46,15 +46,15 @@ class Jd(Adapter):
 
         headers=r.headers
 
-        # TODO 
+        # TODO
 
         logined=False
 
         if(logined):
-            self.found()
+            self.found(user,passwd)
             checked_status=[0,'Found '+self.name+' user ('+user+') using this pwd']
         else:
-            self.not_found()
+            self.not_found(user,passwd)
             checked_status=[-1,self.name+' not found user use this pwd']
 
         self.estimate(checked_status)

@@ -9,10 +9,11 @@ class Qyqq(Adapter):
     def __init__(self):
         super(Qyqq,self).__init__()
         self.auth_url='https://exmail.qq.com/cgi-bin/login'
+        self.name='Qyqq'
 
 
     def check(self,user,passwd):
-
+        return self.skip()
         self.logger.info("Check password for  "+self.auth_url)
 
         starttime=int(1000*time.time())

@@ -20,19 +20,27 @@ class Adapter():
 
     def estimate(self,checked_status):
         if checked_status[0]==0:
-            self.logger.warn(checked_status[1])
+            pass
         if checked_status[0]==-1:
-            self.logger.info(checked_status[1])
+            pass
 
 
-    def found(self):
+    def skip(self,reason=[]):
+        self.logger.warn("Skip "+self.name)
+        return
+
+
+    def found(self,user='',passwd=''):
+
         # TODO  FOUND USER USE THIS PASSWORD
-        pass
+        self.logger.error(self.name +" FOUND user "+ user +" use this password ("+passwd+")")
+        return
 
 
-    def not_found(self):
+    def not_found(self,user='',passwd=''):
         # TODO NOT FOUND USER USE THIS PASSWORD
-        pass
+        self.logger.info(self.name +" NOT FOUND user "+user +" use this password ("+passwd+")")
+        return
 
 
     def post(self,post,url=False,headers={}):
