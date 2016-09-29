@@ -12,7 +12,7 @@ class Github(Adapter):
 
     def check(self,user,passwd):
 
-        self.logger.info("Check pass for  "+self.auth_url)
+        self.logger.info("Check password for  "+self.auth_url)
 
         # params
         post={}
@@ -29,8 +29,11 @@ class Github(Adapter):
         headers=r.headers
         if(headers.get('X-GitHub-User','')!=''):
             checked_status=[0,'Found github user ('+user+') using this pwd']
+            self.found()
         else:
             checked_status=[-1,'github not found user use this pwd']
+            self.not_found()
+            
 
         self.estimate(checked_status)
 

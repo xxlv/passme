@@ -17,6 +17,7 @@ from weibo import Weibo
 from qyqq import Qyqq
 from github import Github
 from redmine import Redmine
+from jd import Jd
 
 
 class PassMe:
@@ -47,16 +48,17 @@ class PassMe:
 
 
     def _init_adapters(self):
-        # TODO dynamicy
+        # TODO 
         self.adapters=[]
         self.adapters.append(['qyqq',Qyqq()])
         self.adapters.append(['github',Github()])
         self.adapters.append(['redmine',Redmine()])
+        self.adapters.append(['jd',Jd()])
 
 
 
 if __name__=='__main__':
-    
+
     parser = argparse.ArgumentParser(description='Passme! check your password')
     parser.add_argument('-u', action="store", help="user identity")
     parser.add_argument('-p', action="store", help="user password")

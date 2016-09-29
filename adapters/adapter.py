@@ -24,6 +24,17 @@ class Adapter():
         if checked_status[0]==-1:
             self.logger.info(checked_status[1])
 
+
+    def found(self):
+        # TODO  FOUND USER USE THIS PASSWORD
+        pass
+
+
+    def not_found(self):
+        # TODO NOT FOUND USER USE THIS PASSWORD
+        pass
+
+
     def post(self,post,url=False,headers={}):
         if (url==False):
             url=self.auth_url
@@ -47,7 +58,6 @@ class Adapter():
         coloredlogs.install()
         logging.getLogger("requests").setLevel(logging.WARNING)
 
-        # logging.basicConfig(level=logging.INFO,format='%(asctime)s %(name)s[%(process)d] %(levelname)s %(message)s')
         logger = logging.getLogger('passme')
         logger.setLevel(logging.DEBUG)
         self.logger=logger

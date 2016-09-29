@@ -20,7 +20,7 @@ class Redmine(Adapter):
             self.logger.error("Skip Redmine , please set auth_url first! ")
             return
 
-        self.logger.info("Check pass for  "+self.auth_url)
+        self.logger.info("Check password for  "+self.auth_url)
 
         # params
         post={}

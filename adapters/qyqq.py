@@ -13,12 +13,12 @@ class Qyqq(Adapter):
 
     def check(self,user,passwd):
 
-        self.logger.info("Check pass for  "+self.auth_url)
+        self.logger.info("Check password for  "+self.auth_url)
 
         starttime=int(1000*time.time())
         # TODO parse from a username
         uin='lvxx'
-        domain='dxy.cn'
+        domain='.cn'
         # TODO make password
         p=''
         # TODO what is this ?
@@ -63,7 +63,7 @@ class Qyqq(Adapter):
         # use cookie access this url
         # check status
 
-        checked_status=[-1,'not found ']
-        self.estimate(checked_status)
+        checked_status=[-1,'found']
+        # self.estimate(checked_status)
 
         return checked_status
