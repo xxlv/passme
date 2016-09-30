@@ -24,7 +24,6 @@ class Redmine(Adapter):
 
         # params
         post={}
-        post["utf8"]='✓'
         post["username"]=user
         post["password"]=passwd
         post["autologin"]=1

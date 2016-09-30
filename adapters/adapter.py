@@ -31,7 +31,7 @@ class Adapter():
         skip="Skip "+self.name
         if reason is not '':
             skip+=" Reason: "+ reason
-            
+
         self.logger.warn(skip)
         return
 
@@ -54,7 +54,7 @@ class Adapter():
         return
 
 
-    def post(self,post,url=False,headers={}):
+    def post(self,post,headers={},url=False):
 
         if (url==False):
             url=self.auth_url
@@ -74,10 +74,9 @@ class Adapter():
 
 
     def _init_logger(self):
-
         coloredlogs.install()
-        logging.getLogger("requests").setLevel(logging.WARNING)
 
+        logging.getLogger("requests").setLevel(logging.WARNING)
         logger = logging.getLogger('passme')
         logger.setLevel(logging.DEBUG)
         self.logger=logger

@@ -18,7 +18,6 @@ class Github(Adapter):
         # params
         post={}
         post["commit"]="Sign in"
-        post["utf8"]='✓'
         post["login"]=user
         post["password"]=passwd
 
@@ -28,7 +27,7 @@ class Github(Adapter):
 
         r=self.post(post,headers={"cookie":cookie})
         headers=r.headers
-            
+
         if(headers.get('X-GitHub-User','')!=''):
             checked_status=[0,'Found github user ('+user+') using this pwd']
             self.found(user,passwd)
