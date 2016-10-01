@@ -1,6 +1,7 @@
 
 from adapter import Adapter
 import re
+import json
 
 # TODO
 
@@ -39,18 +40,18 @@ class Jd(Adapter):
         post["chkRememberMe"]=chkRememberMe
         post["authcode"]=authcode
 
-
         self.auth_url=self.auth_url+"?uuid="+uuid
-
         r=self.post(post,headers={"cookie":cookie})
-
         headers=r.headers
-
+        result=r.text
+        result=result[1:-1]
+        result=json.loads(result)
+        empty_auth=result.get('emptyAuthcode',None)
+        if(empty_auth is not None):
+            self.skip('Need Auth code')
+            
         # TODO
-
         logined=False
-
-
         if(logined):
             self.found(user,passwd)
             checked_status=[0,'Found '+self.name+' user ('+user+') using this pwd']
