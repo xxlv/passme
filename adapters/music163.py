@@ -65,6 +65,8 @@ class Music163(Adapter):
         post["phone"]=user
         post["password"]=passwd
         post["rememberLogin"]='true'
+
+
         post=encrypted_request(post)
 
         headers = {
@@ -79,10 +81,10 @@ class Music163(Adapter):
         }
 
         r=self.post(post,headers=headers)
-
         body=json.loads(r.text)
-        code=body.get('code','')
 
+        code=body.get('code','')
+        
         if(code=='200'):
             self.found(user,passwd)
         else:

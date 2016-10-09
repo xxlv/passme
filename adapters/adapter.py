@@ -55,7 +55,7 @@ class Adapter():
 
 
     def post(self,post,headers={},url=False):
-        
+
         if (url==False):
             url=self.auth_url
 
