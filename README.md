@@ -15,7 +15,7 @@ This is a very simple tool to check whether your password is used repeatedly at 
 #### Alive  
 
 - Github  [Github](https://github.com)
-- gitlab  [Gitlab](https://gitlab.com/users/sign_in)
+- Gitlab  [Gitlab](https://gitlab.com/users/sign_in)
 - Redmine [Redmine](http://www.redmine.org/)
 - Music163 [Music163](http://music.163.com)
 
