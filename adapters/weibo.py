@@ -13,7 +13,7 @@ class Weibo(Adapter):
 
     def check(self,user,passwd):
         if self.auth_url is None:
-            return self.skip()
+            return self.skip(" Not finished yet")
 
 
         self.logger.info("Check password for  "+self.auth_url )
