@@ -1,6 +1,6 @@
 # What is it ?
 
-This is a very simple tool to check whether your password is used repeatedly at multiple sites
+这是一个密码监测工具，它会尝试监测你的用户密码组合是否在指定站点已经使用。
 
 
 # How to use it ?

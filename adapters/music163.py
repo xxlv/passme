@@ -22,7 +22,9 @@ modulus = ('00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7'
 nonce = '0CoJUm6Qyw8W8jud'
 pubKey = '010001'
 
+
 def encrypted_request(text):
+
     text = json.dumps(text)
     secKey = createSecretKey(16)
     encText = aesEncrypt(aesEncrypt(text, nonce), secKey)
@@ -63,11 +65,12 @@ class Music163(Adapter):
 
         post={}
         post["phone"]=user
-        post["password"]=passwd
+        post["password"]=hashlib.md5(passwd.encode('utf-8')).hexdigest()
         post["rememberLogin"]='true'
-
-
         post=encrypted_request(post)
+
+        sess=self.initSession()
+        cookie=sess.get('cookie','')
 
         headers = {
             'Accept': '*/*',
@@ -77,16 +80,35 @@ class Music163(Adapter):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'music.163.com',
             'Referer': 'http://music.163.com/search/',
+            'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36',
+            'cookie':cookie
+        }
+        r=self.post(post,headers=headers)
+
+        body=json.loads(r.text)
+        code=str(body.get('code',''))
+        
+        if(code == '200'):
+            self.found(user,passwd)
+        elif(code == '502'):
+            self.not_found(user,passwd)
+        else:
+            self.skip('Error happend')
+        return
+
+
+    def initSession(self):
+
+        headers = {
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip,deflate,sdch',
+            'Accept-Language': 'zh-CN,zh;q=0.8,gl;q=0.6,zh-TW;q=0.4',
+            'Connection': 'keep-alive',
             'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36'
         }
+        url="http://music.163.com/"
+        r=self.get(url,headers=headers)
+        cookies=r.cookies
 
-        r=self.post(post,headers=headers)
-        body=json.loads(r.text)
-
-        code=body.get('code','')
-        
-        if(code=='200'):
-            self.found(user,passwd)
-        else:
-            self.not_found(user,passwd)
-        return
+        cookies="; ".join([str(x)+"="+str(y) for x,y in cookies.items()])
+        return {"cookie":cookies}

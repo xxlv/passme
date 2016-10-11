@@ -10,7 +10,7 @@ from os.path import isfile
 
 # adapter list
 sys.path.append('./adapters')
-from adapters import *
+# from adapters import *
 
 
 class PassMe:
@@ -60,7 +60,6 @@ class PassMe:
                 self.adapters.append(adaper_name)
 
     def _class_for_name(self,module_name,class_name):
-
         m=importlib.import_module(module_name)
         c=getattr(m,class_name)
         return c

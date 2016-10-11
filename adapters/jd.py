@@ -45,11 +45,16 @@ class Jd(Adapter):
         headers=r.headers
         result=r.text
         result=result[1:-1]
-        result=json.loads(result)
+
+        try:
+            result=json.loads(result)
+        except:
+            return self.skip('Sorry!')
+
         empty_auth=result.get('emptyAuthcode',None)
         if(empty_auth is not None):
-            self.skip('Need Auth code')
-            
+            self.skip('Need captcha..')
+
         # TODO
         logined=False
         if(logined):

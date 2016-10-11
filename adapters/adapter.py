@@ -28,7 +28,7 @@ class Adapter():
 
     def skip(self,reason=''):
 
-        skip="Skip "+self.name
+        skip="Oppps -_-Skip "+self.name
         if reason is not '':
             skip+=" Reason: "+ reason
 
@@ -75,8 +75,7 @@ class Adapter():
 
     def _init_logger(self):
         coloredlogs.install()
-
         logging.getLogger("requests").setLevel(logging.WARNING)
         logger = logging.getLogger('passme')
-        logger.setLevel(logging.DEBUG)
+        logger.setLevel(logging.INFO)
         self.logger=logger
