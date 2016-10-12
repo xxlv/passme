@@ -1,8 +1,7 @@
 # What is it ?
 
+[![Build Status](https://travis-ci.org/xxlv/passme.svg?branch=master)](https://travis-ci.org/xxlv/passme)
 这是一个密码监测工具，它会尝试监测你的用户密码组合是否在指定站点已经使用。
-
-
 # How to use it ?
 
 ```  python
