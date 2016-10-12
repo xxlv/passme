@@ -1,7 +1,7 @@
 
-from adapter import Adapter
+from .adapter import Adapter
 import re
-# TODO 
+# TODO
 class Amazon(Adapter):
 
     def __init__(self):

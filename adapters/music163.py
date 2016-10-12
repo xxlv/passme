@@ -1,5 +1,5 @@
 
-from adapter import Adapter
+from .adapter import Adapter
 import re
 import os
 import json
@@ -87,7 +87,7 @@ class Music163(Adapter):
 
         body=json.loads(r.text)
         code=str(body.get('code',''))
-        
+
         if(code == '200'):
             self.found(user,passwd)
         elif(code == '502'):

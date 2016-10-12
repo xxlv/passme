@@ -12,6 +12,7 @@ class Adapter():
         self.auth_url=''
         self._init_logger()
         self.name='Adapter'
+        self.session=None
 
     def check(self,user,passwd):
         checked_status=[0,'nothing happend']
@@ -59,7 +60,7 @@ class Adapter():
         if (url==False):
             url=self.auth_url
 
-        sess=requests.Session()
+        sess=self._get_session()
 
         self.logger.debug('prepare request(post) url %s' % url)
         return sess.post(url,data=post,headers=headers)
@@ -69,8 +70,17 @@ class Adapter():
             url=self.auth_url
 
         self.logger.debug('prepare get url %s' % url)
-        sess=requests.Session()
-        return sess.get(url,headers=headers)
+
+        sess=self._get_session()
+        r= sess.get(url,headers=headers)
+        r.connection.close()
+        return r
+
+
+    def _get_session(self):
+        if(self.session is None):
+            self.session=requests.Session()
+        return self.session
 
 
     def _init_logger(self):

@@ -1,5 +1,5 @@
 
-from adapter import Adapter
+from .adapter import Adapter
 import re
 import json
 

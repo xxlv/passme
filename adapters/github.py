@@ -1,5 +1,5 @@
 
-from adapter import Adapter
+from .adapter import Adapter
 import re
 
 class Github(Adapter):
@@ -56,5 +56,6 @@ class Github(Adapter):
         else:
             authenticity_token=''
         cookies="; ".join([str(x)+"="+str(y) for x,y in cookies.items()])
+
 
         return {"authenticity_token":authenticity_token,"cookie":cookies}
