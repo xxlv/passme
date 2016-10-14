@@ -1,4 +1,4 @@
-crypto
+pycrypto
 argparse
 coloredlogs
 requests
