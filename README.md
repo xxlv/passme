@@ -1,5 +1,5 @@
 ## passme
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](https://github.com/xxlv/passme)
 [![Join the chat at https://gitter.im/xxlv/passme](https://badges.gitter.im/xxlv/passme.svg)](https://gitter.im/xxlv/passme?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/xxlv/passme.svg?branch=master)](https://travis-ci.org/xxlv/passme)  
 
