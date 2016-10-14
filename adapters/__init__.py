@@ -8,3 +8,4 @@ from .amazon import Amazon
 from .music163 import Music163
 from .meituan import Meituan
 from .zhihu import Zhihu
+from .facebook import Facebook

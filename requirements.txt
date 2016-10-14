@@ -1,4 +1,4 @@
+crypto
 argparse
 coloredlogs
 requests
-Crypto
