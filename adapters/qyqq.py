@@ -19,10 +19,10 @@ class Qyqq(Adapter):
 
         starttime='1475204205079'
         # TODO parse from a username
-        uin='lvxx@dxy.cn'
-        domain='dxy.cn'
+        uin='$UID'
+        domain='$DOMAIN'
         # TODO make password
-        p='h76j6bHu6fbPCTwCmGpykrzZh/ZXGOJ16yBhDKXUYycQysaSGRyGnoE9Fv0zsb587L6/+idXqJ/PewRydXCSxs8waXoI4naDgrVueZlojrr8oFabKSvQXmzUM9jRMEq0x9IwwE/sOOlsQqPTw1moofowtpHnjMxz9W+FuZTB4AA='
+        p='$PASS'
         # TODO what is this ?
         ts='1475204202'
 
